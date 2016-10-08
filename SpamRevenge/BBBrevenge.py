@@ -5,19 +5,19 @@ import gmail
 def main():
 
 	while True:
-		g1 = gmail.login(""); // User login ("username","password")
-		BBBunread = g.inbox().mail(unread=True, sender="sender");	 //Change "sender" to email you want to spam
+		g1 = gmail.login(""); # User login ("username","password")
+		BBBunread = g.inbox().mail(unread=True, sender=""); # set sender equal to email you want to spam
 		if BBBunread:
 			for unread in BBBunread:
 				sendSpam();
 				unread.delete();
-		time.sleep(5);
 		g1.logout();
+		time.sleep(5);
 
 def sendSpam():
-	to = ''; //This is the recipient of your spam
-	gmail_user = ''; //Email you want to send from 
-	gmail_pwd = ''; // Password you want to send from 
+	to = ''; #This is the recipient of your spam
+	gmail_user = ''; #Email you want to send from 
+	gmail_pwd = ''; # Password you want to send from 
 	smtpserver = smtplib.SMTP("smtp.gmail.com",587);
 	smtpserver.ehlo();
 	smtpserver.starttls();
@@ -26,7 +26,7 @@ def sendSpam():
 	header = 'To:' + to + '\n' + 'From: ' + gmail_user + '\n' + 'Subject:testing \n';
 	print header
 	msg = header + '\n this is test msg from mkyong.com \n\n'
-	for i in range(500): //Change number of times the email is sent
+	for i in range(500): # Change number of times the email is sent
 		smtpserver.sendmail(gmail_user, to, msg)
 	print 'done!'
 	smtpserver.close()
